@@ -179,5 +179,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('courses/getAll', [CourseController::class, 'getAllCourses']);
+Route::get('/courses/{id}', [CourseController::class, 'findByIdCourse']);
 Route::get('teachers/getAll', [AssignedTeacherController::class, 'getAllTeachers']);
 Route::get('events/getAll', [EventController::class, 'getAllEvents']);

@@ -24,6 +24,12 @@ class CreateCoursesTable extends Migration
             $table->unsignedDecimal('cost');
             $table->unsignedDecimal('current_cost');
             $table->unsignedInteger('rating');
+            $table->string('center_name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('full_time_or_part_time')->nullable();
+            $table->string('nvq')->nullable();
+            $table->string('month')->nullable();
             $table->timestamps();
         });
     }

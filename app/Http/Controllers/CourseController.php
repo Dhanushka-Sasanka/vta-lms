@@ -145,4 +145,18 @@ class CourseController extends Controller
         ]);
 
     }
+
+    public function findByIdCourse(int $id) 
+    {
+
+        $course = Course::find($id);
+        if (!$course) {
+            return response()->json([
+                'message' => 'Course not found.'
+            ], 404);
+        }
+
+        return response()->json($course, 200);
+
+    }
 }

@@ -29,7 +29,7 @@ class EventController extends Controller
             $data = Event::whereDate('start', '>=', $request->start)
                     ->whereDate('end',   '<=', $request->end)
                     ->where('session_id', $current_school_session_id)
-                    ->get(['id', 'title', 'start', 'end']);
+                    ->get(['id', 'title', 'start', 'end','description']);
             return response()->json($data);
         }
         return view('events.index');
@@ -45,7 +45,8 @@ class EventController extends Controller
                     'title' => $request->title,
                     'start' => $request->start,
                     'end' => $request->end,
-                    'session_id' => $current_school_session_id
+                    'session_id' => $current_school_session_id,
+                    'description' => $request->description
                 ]);
                 break;
 
@@ -54,6 +55,7 @@ class EventController extends Controller
                     'title' => $request->title,
                     'start' => $request->start,
                     'end' => $request->end,
+                    'description' => $request->description
                 ]);
                 break;
 

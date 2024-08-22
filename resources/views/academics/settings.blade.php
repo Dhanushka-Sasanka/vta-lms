@@ -180,6 +180,22 @@
                                                 @endisset
                                             </select>
                                         </div>
+                                        <div class="mb-3">
+                                            <input type="number" class="form-control form-control-sm" name="cost" placeholder="Course cost" aria-label="Course cost" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <input type="number" class="form-control form-control-sm" name="current_cost" placeholder="Current cost" aria-label="current_cost" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <input type="number" class="form-control form-control-sm" name="rating" placeholder="Rating" aria-label="rating" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <textarea type="text" class="form-control form-control-sm" name="course_description" placeholder="Course description" aria-label="course_description" required ></textarea>
+                                        </div>
+
                                         <button class="btn btn-sm btn-outline-primary" type="submit"><i class="bi bi-check2"></i> Create</button>
                                     </form>
                                 </div>
@@ -267,7 +283,7 @@
     function getSectionsAndCourses(obj) {
         var class_id = obj.options[obj.selectedIndex].value;
 
-        var url = "{{route('get.sections.courses.by.classId')}}?class_id=" + class_id 
+        var url = "{{route('get.sections.courses.by.classId')}}?class_id=" + class_id
 
         fetch(url)
         .then((resp) => resp.json())

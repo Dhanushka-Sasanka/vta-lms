@@ -37,7 +37,8 @@
             selectHelper: {{$selectable}},
             select: function (event_start, event_end) {
                 var event_name = prompt("Event Name:");
-                if (event_name) {
+                var event_description = prompt("Event Description:");
+                if (event_name && event_description) {
                     var event_start = $.fullCalendar.formatDate(event_start, "Y-MM-DD HH:mm:ss");
                     var event_end = $.fullCalendar.formatDate(event_end, "Y-MM-DD HH:mm:ss");
                     $.ajax({
@@ -46,20 +47,24 @@
                             title: event_name,
                             start: event_start,
                             end: event_end,
-                            type: 'create'
+                            type: 'create',
+                            description: event_description
                         },
                         type: "POST",
                         success: function (data) {
                             displayMessage("Event created.");
-
-                            calendar.fullCalendar('renderEvent', {
-                                id: data.id,
-                                title: event_name,
-                                start: event_start,
-                                end: event_end
-                            }, true);
-                            calendar.fullCalendar('unselect');
-                        }
+                            // calendar.fullCalendar('renderEvent', {
+                            //     id: data.id,
+                            //     title: event_name,
+                            //     start: event_start,
+                            //     end: event_end
+                            // }, true);
+                            // calendar.fullCalendar('unselect');
+                        },error: function (xhr, status, error) {
+    console.log(xhr.responseText);
+    console.log(error);
+    displayMessage("Error occurred: " + error);
+}
                     });
                 }
             },
@@ -74,6 +79,7 @@
                         start: event_start,
                         end: event_end,
                         id: event.id,
+                        description: event.description,
                         type: 'edit'
                     },
                     type: "POST",

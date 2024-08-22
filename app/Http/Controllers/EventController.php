@@ -48,7 +48,7 @@ class EventController extends Controller
                     'session_id' => $current_school_session_id
                 ]);
                 break;
-  
+
             case 'edit':
                 $event = Event::find($request->id)->update([
                     'title' => $request->title,
@@ -56,15 +56,27 @@ class EventController extends Controller
                     'end' => $request->end,
                 ]);
                 break;
-  
+
             case 'delete':
                 $event = Event::find($request->id)->delete();
                 break;
-             
+
             default:
                 break;
         }
         dd($event);
         return response()->json($event);
+    }
+
+
+    public function getAllEvents()
+    {
+
+        $event = Event::all();
+        return response()->json([
+            'status' => 200,
+            'events' => $event
+        ]);
+
     }
 }

@@ -17,9 +17,13 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('course_name');
             $table->string('course_type');
+            $table->string('course_description');
             $table->unsignedInteger('class_id');
             $table->unsignedInteger('semester_id');
             $table->unsignedInteger('session_id');
+            $table->unsignedDecimal('cost');
+            $table->unsignedDecimal('current_cost');
+            $table->unsignedInteger('rating');
             $table->timestamps();
         });
     }

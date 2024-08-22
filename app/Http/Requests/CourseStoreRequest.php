@@ -26,9 +26,13 @@ class CourseStoreRequest extends FormRequest
         return [
             'course_name'  => 'required',
             'course_type'  => 'required',
+            'course_description' => 'required',
             'class_id'     => 'required|integer|gt:0',
             'semester_id'  => 'required|integer|gt:0',
             'session_id'   => 'required|integer|gt:0',
+            'cost'   => 'required|integer|gt:0',
+            'current_cost'   => 'required|integer|gt:0',
+            'rating'   => 'required|integer|gt:0',
         ];
     }
 }

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\AssignedTeacher;
 use Illuminate\Http\Request;
 use App\Traits\SchoolSession;
 use App\Interfaces\SemesterInterface;
 use App\Interfaces\SchoolSessionInterface;
 use App\Http\Requests\TeacherAssignRequest;
 use App\Repositories\AssignedTeacherRepository;
+use Illuminate\Support\Facades\DB;
 
 class AssignedTeacherController extends Controller
 {
@@ -18,7 +19,7 @@ class AssignedTeacherController extends Controller
 
     /**
     * Create a new Controller instance
-    * 
+    *
     * @param SchoolSessionInterface $schoolSessionRepository
     * @return void
     */
@@ -51,7 +52,7 @@ class AssignedTeacherController extends Controller
         if($teacher_id == null) {
             abort(404);
         }
-        
+
         $current_school_session_id = $this->getSchoolCurrentSession();
 
         $semesters = $this->semesterRepository->getAll($current_school_session_id);
@@ -63,7 +64,7 @@ class AssignedTeacherController extends Controller
         } else {
             $courses = $assignedTeacherRepository->getTeacherCourses($current_school_session_id, $teacher_id, $semester_id);
         }
-        
+
         $data = [
             'courses'               => $courses,
             'semesters'             => $semesters,
@@ -99,5 +100,22 @@ class AssignedTeacherController extends Controller
         } catch (\Exception $e) {
             return back()->withError($e->getMessage());
         }
+    }
+
+    public function getAllTeachers()
+    {
+
+        $results = DB::table('assigned_teachers')
+            ->join('users', 'assigned_teachers.teacher_id', '=', 'users.id')
+            ->select('users.first_name', 'users.last_name')
+            ->get();
+
+
+//        $teachers = AssignedTeacher::all();
+        return response()->json([
+            'status' => 200,
+            'teachers' => $results
+        ]);
+
     }
 }

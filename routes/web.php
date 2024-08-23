@@ -37,8 +37,26 @@ use App\Http\Controllers\Auth\UpdatePasswordController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public_site/index');
 });
+
+Route::get('/about', function () {return view('public_site/about-1');});
+Route::get('/student', function () {return view('public_site/students');});
+Route::get('/public_register', function () {return view('public_site/register');});
+Route::get('/profile', function () {return view('public_site/profile');});
+Route::get('/membership', function () {return view('public_site/membership');});
+Route::get('/public_login', function () {return view('public_site/login');});
+Route::get('/forget_password', function () {return view('public_site/forget-password');});
+Route::get('/faq', function () {return view('public_site/faq-2');});
+Route::get('/portfolio', function () {return view('public_site/portfolio');});
+Route::get('/courses', function () {return view('public_site/courses');});
+Route::get('/courses-details', function () {return view('public_site/courses-details');});
+Route::get('/contact-2', function () {return view('public_site/contact-2');});
+Route::get('/blog', function () {return view('public_site/blog-standard');});
+Route::get('/blog-list', function () {return view('public_site/blog-list-sidebar');});
+Route::get('/blog-details', function () {return view('public_site/blog-details');});
+
+
 
 Auth::routes();
 

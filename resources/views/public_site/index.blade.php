@@ -10,8 +10,6 @@
     <meta content="" name="author"/>
     <meta content="" name="robots"/>
 
-    <!-- DESCRIPTION -->
-    <meta content="EduChamp : Education HTML Template" name="description"/>
 
     <meta content="" property="og:image"/>
     <meta content="telephone=no" name="format-detection">
